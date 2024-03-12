@@ -1,0 +1,35 @@
+<aura:component controller = "InstituteAuraController">
+    <aura:attribute name = "recordId" type = "Id"/>
+    <aura:attribute name = "columns" type = "List"/>
+     <aura:attribute name = "studentsColumns" type = "List"/>
+    <aura:attribute name = "selectedMentorId" type = "Id"/>
+
+    <aura:attribute name = "instituteList" type = "List"/>
+    <aura:attribute name="Mentors" type= "Mentor2__c"/>
+     
+    <aura:attribute name="students" type= "Student__c"/>
+    <aura:handler name = "init" value = "{!this}" action = "{!c.doInit}"/>
+    
+    <!--institutes dropdown-->
+    <lightning:select aura:id = "select1" name = "select1" label="" onchange = "{!c.getMentorTable}">
+        <option value = "null">Select an Institute</option>
+        <aura:iteration items = "{!v.instituteList}" var = "item">
+            <option value = "{!item.Id}">{!item.Name}</option>
+        </aura:iteration>
+    </lightning:select>
+    
+    <!--mentor table -->
+    <lightning:card>
+        <lightning:datatable data="{!v.Mentors}" 
+                             columns="{!v.columns}"
+                             keyField = "Id"
+                             hideCheckboxColumn="false"
+                             onrowselection="{!c.handleRowAction}"/>
+        <!--student table -->
+      <lightning:datatable data="{!v.students}" 
+                             columns="{!v.studentsColumns}"
+                             keyField = "Id"
+                             hideCheckboxColumn="false"
+                             />
+    </lightning:card>
+</aura:component>
