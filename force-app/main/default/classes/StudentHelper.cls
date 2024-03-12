@@ -9,7 +9,7 @@ public class StudentHelper {
                     oldStudent != null && oldStudent.get(fieldName) != newStudent.get(fieldName)) {
                         studentHistoryRecords.add(new Student_History__c(
                             FieldName__c = fieldName,
-                            OldValue__c = String.valueOf(oldStudent.get(fieldName)),
+                             OldValue__c = String.valueOf(oldStudent.get(fieldName)),
                             NewValue__c = String.valueOf(newStudent.get(fieldName)),
                             Record_Id__c = newStudent.Id,
                             Student__c = oldStudent.Id,
